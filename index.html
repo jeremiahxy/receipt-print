@@ -1,10 +1,122 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Designer Kids Wear - Gift Receipt Print</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Designer Kids Wear - Reciept Printer</title>
+    <style type="text/css">
+
+        @font-face {
+            font-family: 'Barcode';
+            src: url('assets/3OF9_NEW.TTF')  format('truetype');
+        }
+
+        #actions, #holder{
+            vertical-align: top;
+            display: inline-block;
+            padding: 0 25px;
+            text-align: center;
+        }
+
+        #btnEdit {
+            margin-top: 30%;
+        }
+
+        #holder{
+            width: 20%;
+        }
+
+        #printArea{
+            width: 100%;
+        }
+
+        #printArea p, #actions p{
+            font-size: 12px;
+            margin: 0;
+        }
+
+        #transactionBarcode {
+            font-family: 'Barcode';
+            font-size: 32px;
+        }
+
+        @page {
+            size:3in 11in;
+        }
+        @media print {
+            #holder, #printArea{
+                height: 100%;
+                width: 100%;
+            }
+
+            body * {
+                display:none;
+            }
+
+            body div.printable, body div.printable * {
+                display:block;
+            }
+        }
+
+
+    </style>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 </head>
+
 <body>
+    <div id="actions">
+        <input id="btnEdit" type="submit" value="Edit Text" onclick="editFields();" />
+        <form action="javascript:editTransactionNumber();">
+            Transaction Number:<br>
+            <input id="transactionNumber" type="text" name="transactionNumber" value="I-xxxxx">
+            <input type="submit" value="Update">
+        </form>
+        <br><br>
+        <input id="btnPrint" type="submit" value="Print" onclick="window.print();" />
 
+    </div>
+
+    <div id="holder">
+        <div id="printArea" class="printable">
+            <h2 class="topHeader">Designer Kids Wear</h2>
+            <p class="line1">7500 Martin Grove Road</p>
+            <p class="line2">Unit #8</p>
+            <p class="line3">Woodbridge, ON</p>
+            <p class="line4">L4L 8S9</p>
+            <br>
+            <p>Transaction Date:</p>
+            <p class="date">16/3/2017</p>
+            <br>
+            <p class="info1">905-264-7228</p>
+            <p class="info2">info@designerkidswear.ca</p>
+            <p class="info3">www.designerkidswear.ca</p>
+            <br>
+            <p class="return">
+                Designer Kids Wear accepts returns of unused and unaltered products for exchange or Credit Voucher within 21 days of purchase. All returns must have product tags and be accompanied by the original receipt. All sale purchases 50% or greater are Final Sale.<br><br>
+                Thank You for Shopping at Designer Kids Wear<br><br>
+                *** Sorry No Refunds ***
+            </p>
+            <br>
+            <p class="social">
+                "Like" Designer Kids Wear on Facebook<br>
+                Follow us on Twitter @DesignerKidsDKW
+            </p>
+            <br>
+            <span id="transactionId"></span>
+            <br>
+            <span id="transactionBarcode"></span>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function editTransactionNumber() {
+            var transNum = document.getElementById('transactionNumber').value;
+            document.getElementById('transactionId').innerHTML = '<p>'+transNum+'</p>';
+            document.getElementById('transactionBarcode').innerHTML = transNum;
+//            alert('Transaction Number is: '+transNum);
+        }
+        function editFields(){
+            alert('edit fields clicked');
+        }
+    </script>
 </body>
-
 </html>
