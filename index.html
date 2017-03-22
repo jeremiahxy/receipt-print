@@ -63,21 +63,21 @@
             }
         }
 
-
     </style>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 </head>
 
 <body>
     <div id="actions">
         <form action="javascript:editTransactionNumber();">
             Transaction Number:<br>
-            <input id="transactionNumber" type="text" name="transactionNumber" value="I-xxxxx">
+            (do not need to add I-)<br>
+            <input id="transactionNumber" type="text" name="transactionNumber" value="xxxxx">
             <input type="submit" value="Update">
         </form>
         <br>
         <form action="javascript:editDate();">
-            Date (if not today):<br>
+            Date:<br>
+            (if not today)<br>
             <input id="dateInput" type="text" name="dateInput" value="">
             <input type="submit" value="Update">
         </form>
@@ -185,8 +185,10 @@
 
         function editTransactionNumber() {
             var transNum = document.getElementById('transactionNumber').value;
+            transNum = 'I-'+transNum;
+            var transNumScan = '*'+transNum+'*'
             document.getElementById('transactionId').innerHTML = '<p>'+transNum+'</p>';
-            document.getElementById('transactionBarcode').innerHTML = transNum;
+            document.getElementById('transactionBarcode').innerHTML = transNumScan;
         }
 
         document.addEventListener("DOMContentLoaded", function(event) {
