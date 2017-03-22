@@ -39,6 +39,12 @@
             font-size: 32px;
         }
 
+        .disabledInput{
+            border: none;
+            width: 100%;
+            text-align: center;
+        }
+
         @page {
             size:3in 11in;
         }
@@ -78,28 +84,24 @@
     <div id="holder">
         <div id="printArea" class="printable">
             <h2 class="topHeader">Designer Kids Wear</h2>
-            <p class="line1">7500 Martin Grove Road</p>
-            <p class="line2">Unit #8</p>
-            <p class="line3">Woodbridge, ON</p>
-            <p class="line4">L4L 8S9</p>
+            <input id="line1" class="editFields disabledInput" value="7500 Martin Grove Road" disabled>
+            <input id="line2" class="editFields disabledInput" value="Unit #8" disabled>
+            <input id="line3" class="editFields disabledInput" value="Woodbridge, ON" disabled>
+            <input id="line4" class="editFields disabledInput" value="L4L 8S9" disabled>
             <br>
-            <p>Transaction Date:</p>
-            <p class="date">16/3/2017</p>
+            <input class="editFields disabledInput" value="Transaction Date:" disabled>
+            <input id="date" class="editFields disabledInput" value="16/3/2017" disabled>
             <br>
-            <p class="info1">905-264-7228</p>
-            <p class="info2">info@designerkidswear.ca</p>
-            <p class="info3">www.designerkidswear.ca</p>
+            <input id="info1" class="editFields disabledInput" value="905-264-7228" disabled>
+            <input id="info2" class="editFields disabledInput" value="info@designerkidswear.ca" disabled>
+            <input id="info3" class="editFields disabledInput" value="www.designerkidswear.ca" disabled>
             <br>
-            <p class="return">
-                Designer Kids Wear accepts returns of unused and unaltered products for exchange or Credit Voucher within 21 days of purchase. All returns must have product tags and be accompanied by the original receipt. All sale purchases 50% or greater are Final Sale.<br><br>
-                Thank You for Shopping at Designer Kids Wear<br><br>
-                *** Sorry No Refunds ***
-            </p>
-            <br>
-            <p class="social">
-                "Like" Designer Kids Wear on Facebook<br>
-                Follow us on Twitter @DesignerKidsDKW
-            </p>
+            <textarea id="return" class="editFields disabledInput" disabled>
+                Designer Kids Wear accepts returns of unused and unaltered products for exchange or Credit Voucher within 21 days of purchase. All returns must have product tags and be accompanied by the original receipt. All sale purchases 50% or greater are Final Sale.<br><br>Thank You for Shopping at Designer Kids Wear<br><br>*** Sorry No Refunds ***
+            </textarea>
+            <textarea id="social" class="editFields disabledInput" disabled>
+                "Like" Designer Kids Wear on Facebook<br>Follow us on Twitter @DesignerKidsDKW
+            </textarea>
             <br>
             <span id="transactionId"></span>
             <br>
@@ -115,7 +117,19 @@
 //            alert('Transaction Number is: '+transNum);
         }
         function editFields(){
-            alert('edit fields clicked');
+            var inputs = document.getElementsByClassName('editFields');
+            if (inputs[0].classList.contains('disabledInput')) {
+                for(var i = 0; i < inputs.length; i++) {
+                    inputs[i].classList.remove('disabledInput');
+                    inputs[i].disabled = false;
+                }
+            } else {
+                for(var i = 0; i < inputs.length; i++) {
+                    inputs[i].classList.add('disabledInput');
+                    inputs[i].disabled = true;
+                }
+            }
+//            alert('edit fields clicked');
         }
     </script>
 </body>
