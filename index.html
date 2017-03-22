@@ -17,8 +17,8 @@
             text-align: center;
         }
 
-        #btnEdit {
-            margin-top: 30%;
+        #actions {
+            padding-top: 5%;
         }
 
         #holder{
@@ -70,10 +70,15 @@
 
 <body>
     <div id="actions">
-        <input id="btnEdit" type="submit" value="Edit Text" onclick="editFields();" />
         <form action="javascript:editTransactionNumber();">
             Transaction Number:<br>
             <input id="transactionNumber" type="text" name="transactionNumber" value="I-xxxxx">
+            <input type="submit" value="Update">
+        </form>
+        <br>
+        <form action="javascript:editDate();">
+            Date (if not today):<br>
+            <input id="dateInput" type="text" name="dateInput" value="">
             <input type="submit" value="Update">
         </form>
         <br><br>
@@ -83,54 +88,111 @@
 
     <div id="holder">
         <div id="printArea" class="printable">
-            <h2 class="topHeader">Designer Kids Wear</h2>
-            <input id="line1" class="editFields disabledInput" value="7500 Martin Grove Road" disabled>
-            <input id="line2" class="editFields disabledInput" value="Unit #8" disabled>
-            <input id="line3" class="editFields disabledInput" value="Woodbridge, ON" disabled>
-            <input id="line4" class="editFields disabledInput" value="L4L 8S9" disabled>
+            <h2 id="topHeader">
+                <!-- Change the top header here -->
+                Designer Kids Wear
+                <!-- Change the top header here -->
+            </h2>
+            <p id="line1">
+                <!-- Change address line 1 here -->
+                7500 Martin Grove Road
+                <!-- Change address line 1 here -->
+            </p>
+            <p id="line2">
+                <!-- Change address line 2 here -->
+                Unit #8
+                <!-- Change address line 2 here -->
+            </p>
+            <p id="line3">
+                <!-- Change address line 3 here -->
+                Woodbridge, ON
+                <!-- Change address line 3 here -->
+            </p>
+            <p id="line4">
+                <!-- Change address line 4 here -->
+                L4L 8S9
+                <!-- Change address line 4 here -->
+            </p>
             <br>
-            <input class="editFields disabledInput" value="Transaction Date:" disabled>
-            <input id="date" class="editFields disabledInput" value="16/3/2017" disabled>
+            <p>Transaction Date:</p>
+            <p id="date"></p>
             <br>
-            <input id="info1" class="editFields disabledInput" value="905-264-7228" disabled>
-            <input id="info2" class="editFields disabledInput" value="info@designerkidswear.ca" disabled>
-            <input id="info3" class="editFields disabledInput" value="www.designerkidswear.ca" disabled>
+            <p id="info1">
+                <!-- Change the phone number text here -->
+                905-264-7228
+                <!-- Change the phone number text here -->
+            </p>
+            <p id="info2">
+                <!-- Change the email text here -->
+                info@designerkidswear.ca
+                <!-- Change the email text here -->
+            </p>
+            <p id="info3">
+                <!-- Change the website text here -->
+                www.designerkidswear.ca
+                <!-- Change the website text here -->
+            </p>
             <br>
-            <textarea id="return" class="editFields disabledInput" disabled>
-                Designer Kids Wear accepts returns of unused and unaltered products for exchange or Credit Voucher within 21 days of purchase. All returns must have product tags and be accompanied by the original receipt. All sale purchases 50% or greater are Final Sale.<br><br>Thank You for Shopping at Designer Kids Wear<br><br>*** Sorry No Refunds ***
-            </textarea>
-            <textarea id="social" class="editFields disabledInput" disabled>
-                "Like" Designer Kids Wear on Facebook<br>Follow us on Twitter @DesignerKidsDKW
-            </textarea>
+            <p id="return">
+                <!-- Change the Return section text here -->
+                Designer Kids Wear accepts returns of unused and unaltered products for exchange or Credit Voucher within 21 days of purchase. All returns must have product tags and be accompanied by the original receipt. All sale purchases 50% or greater are Final Sale.
+                <br><br> <!-- Line Break with extra space within a paragraph tag -->
+                Thank You for Shopping at Designer Kids Wear
+                <br><br> <!-- Line Break with extra space within a paragraph tag -->
+                *** Sorry No Refunds ***
+                <!-- Change the Return section text here -->
+            </p>
+            <br>
+            <p id="social">
+                <!-- Change the Social Media section text here -->
+                "Like" Designer Kids Wear on Facebook
+                <br><!-- Line Break WITHOUT extra space within a paragraph tag -->
+                Follow us on Twitter @DesignerKidsDKW
+                <!-- Change the Social Media section text here -->
+            </p>
             <br>
             <span id="transactionId"></span>
             <br>
             <span id="transactionBarcode"></span>
+
         </div>
     </div>
 
     <script type="text/javascript">
+
+        function setDate() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1;
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd='0'+dd
+            }
+
+            if(mm<10) {
+                mm='0'+mm
+            }
+
+            today = dd+'/'+mm+'/'+yyyy;
+            document.getElementById('date').innerHTML = today;
+        }
+
+        function editDate() {
+            var dateInputCapture = document.getElementById('dateInput').value;
+            document.getElementById('date').innerHTML = dateInputCapture;
+        }
+
         function editTransactionNumber() {
             var transNum = document.getElementById('transactionNumber').value;
             document.getElementById('transactionId').innerHTML = '<p>'+transNum+'</p>';
             document.getElementById('transactionBarcode').innerHTML = transNum;
-//            alert('Transaction Number is: '+transNum);
         }
-        function editFields(){
-            var inputs = document.getElementsByClassName('editFields');
-            if (inputs[0].classList.contains('disabledInput')) {
-                for(var i = 0; i < inputs.length; i++) {
-                    inputs[i].classList.remove('disabledInput');
-                    inputs[i].disabled = false;
-                }
-            } else {
-                for(var i = 0; i < inputs.length; i++) {
-                    inputs[i].classList.add('disabledInput');
-                    inputs[i].disabled = true;
-                }
-            }
-//            alert('edit fields clicked');
-        }
+
+        document.addEventListener("DOMContentLoaded", function(event) {
+            setDate();
+        });
+
     </script>
 </body>
 </html>
