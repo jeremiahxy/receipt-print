@@ -29,14 +29,18 @@
             width: 100%;
         }
 
+        #printArea p, #actions p, #printArea h2{
+            font-family: Helvetica, sans-serif;
+        }
+
         #printArea p, #actions p{
-            font-size: 12px;
+            font-size: 16px;
             margin: 0;
         }
 
         #transactionBarcode {
             font-family: 'Barcode';
-            font-size: 32px;
+            font-size: 46px;
         }
 
         .disabledInput{
@@ -90,7 +94,7 @@
         <div id="printArea" class="printable">
             <h2 id="topHeader">
                 <!-- Change the top header here -->
-                Designer Kids Wear
+                DESIGNER KIDS WEAR
                 <!-- Change the top header here -->
             </h2>
             <p id="line1">
@@ -186,7 +190,7 @@
         function editTransactionNumber() {
             var transNum = document.getElementById('transactionNumber').value;
             transNum = 'I-'+transNum;
-            var transNumScan = '*'+transNum+'*'
+            var transNumScan = '*'+transNum+'*';
             document.getElementById('transactionId').innerHTML = '<p>'+transNum+'</p>';
             document.getElementById('transactionBarcode').innerHTML = transNumScan;
         }
